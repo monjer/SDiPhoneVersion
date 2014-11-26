@@ -73,17 +73,18 @@
 +(DeviceSize)deviceSize
 {
     
-    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    BOOL isLandscape = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
-    screenHeight = isLandscape ? screenWidth : screenHeight;
-    
+   CGFloat screenHeight;
     //
     // After IOS8.0 [UIScreen mainScreen].bounds takes into account any interface rotations in effect for the device,
     // so the value of this property will change when the device rotate bewteen portriat and landscape.
     //
-    if(iOSVersionGreaterThanOrEqualTo(@"8.0") && isLandscape){
-        screenHeight = [UIScreen mainScreen].bounds.size.width;
+    if(iOSVersionGreaterThanOrEqualTo(@"8.0")){
+        screenHeight = [[UIScreen mainScreen] bounds].size.height;
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        BOOL isLandscape = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
+        screenHeight = isLandscape ? screenWidth : screenHeight;
+    }else{
+        screenHeight = [UIScreen mainScreen].bounds.size.height;
     }
     
     if (screenHeight == 480)
