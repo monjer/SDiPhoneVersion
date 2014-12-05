@@ -95,7 +95,9 @@
         return  iPhone47inch;
     else if(screenHeight == 736)
         return iPhone55inch;
-    else
+    else if(screenHeight == 1024){
+        return iPadinch
+    }else
         return UnknownSize;
 }
 
